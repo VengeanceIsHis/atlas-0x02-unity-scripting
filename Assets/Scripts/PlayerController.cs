@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -44,6 +45,23 @@ public class PlayerController : MonoBehaviour
         {
             health--;
             Debug.Log("Health: " + health);
+        }
+
+        if (other.CompareTag("Goal"))
+        {
+            Debug.Log("You win!");
+        }
+    }
+
+    void Update()
+    {
+        if (health == 0)
+        {
+            Debug.Log("Game Over!");
+
+            Scene currentScene = SceneManager.GetActiveScene();
+
+            SceneManager.LoadScene(currentScene.name);
         }
     }
 }
